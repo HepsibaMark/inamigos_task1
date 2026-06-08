@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>InAmigos Foundation – Uniting Minds for A Change</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --green: #2d7a4f;
+    --green-light: #3fa96b;
+    --green-pale: #e8f5ee;
+    --amber: #f4a100;
+    --amber-light: #ffd166;
+    --earth: #7b4f2e;
+    --cream: #fdf8f0;
+    --charcoal: #1c1c1c;
+    --grey: #6b6b6b;
+    --white: #ffffff;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--charcoal);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 999;
+    background: rgba(253,248,240,0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(45,122,79,0.12);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0.85rem 5%;
+  }
+  .nav-logo { display: flex; align-items: center; gap: 0.6rem; }
+  .nav-logo .logo-circle {
+    width: 38px; height: 38px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--green), var(--amber));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; color: white; font-weight: 900;
+    font-family: 'Playfair Display', serif;
+  }
+  .nav-logo span { font-size: 1.1rem; font-weight: 600; color: var(--green); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { text-decoration: none; color: var(--grey); font-size: 0.88rem; font-weight: 500; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--green); }
+  .nav-cta {
+    background: var(--green); color: white;
+    padding: 0.5rem 1.3rem; border-radius: 50px;
+    text-decoration: none; font-size: 0.88rem; font-weight: 600;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .nav-cta:hover { background: var(--green-light); transform: translateY(-1px); }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    background:
+      url('https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=1600&q=80') center/cover no-repeat;
+    position: relative; display: flex; align-items: center; justify-content: center;
+    text-align: center; padding-top: 80px;
+  }
+  #hero::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(160deg, rgba(28,28,28,0.72) 0%, rgba(45,122,79,0.55) 100%);
+  }
+  .hero-content { position: relative; z-index: 2; max-width: 780px; padding: 2rem; }
+  .hero-badge {
+    display: inline-block; background: var(--amber); color: var(--charcoal);
+    font-size: 0.78rem; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; padding: 0.35rem 1rem; border-radius: 50px;
+    margin-bottom: 1.5rem; animation: fadeDown 0.8s ease both;
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 6vw, 4.8rem);
+    font-weight: 900; color: white; line-height: 1.12;
+    margin-bottom: 1.2rem; animation: fadeDown 0.8s 0.15s ease both;
+  }
+  .hero-title em { color: var(--amber-light); font-style: normal; }
+  .hero-sub {
+    font-size: 1.1rem; color: rgba(255,255,255,0.85); font-weight: 300;
+    max-width: 540px; margin: 0 auto 2.5rem;
+    line-height: 1.7; animation: fadeDown 0.8s 0.3s ease both;
+  }
+  .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; animation: fadeDown 0.8s 0.45s ease both; }
+  .btn-primary {
+    background: var(--amber); color: var(--charcoal);
+    padding: 0.85rem 2.2rem; border-radius: 50px;
+    text-decoration: none; font-weight: 700; font-size: 0.95rem;
+    transition: all 0.25s; box-shadow: 0 4px 18px rgba(244,161,0,0.4);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(244,161,0,0.5); }
+  .btn-outline {
+    border: 2px solid rgba(255,255,255,0.6); color: white;
+    padding: 0.83rem 2.2rem; border-radius: 50px;
+    text-decoration: none; font-weight: 600; font-size: 0.95rem;
+    transition: all 0.25s;
+  }
+  .btn-outline:hover { background: rgba(255,255,255,0.12); border-color: white; }
+
+  .hero-stats {
+    position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+    display: flex; gap: 3rem; z-index: 2;
+    animation: fadeUp 1s 0.7s ease both;
+  }
+  .stat { text-align: center; color: white; }
+  .stat-num { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 900; color: var(--amber-light); }
+  .stat-label { font-size: 0.78rem; opacity: 0.8; text-transform: uppercase; letter-spacing: 0.06em; }
+
+  /* ── SECTION GENERIC ── */
+  section { padding: 6rem 5%; }
+  .section-label {
+    font-size: 0.78rem; font-weight: 700; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--green); margin-bottom: 0.8rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 900; line-height: 1.2; color: var(--charcoal); margin-bottom: 1rem;
+  }
+  .section-title span { color: var(--green); }
+  .section-desc { font-size: 1.05rem; color: var(--grey); max-width: 520px; line-height: 1.75; }
+
+  /* ── ABOUT ── */
+  #about { background: white; }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; max-width: 1200px; margin: 0 auto; }
+  .about-img-wrap { position: relative; }
+  .about-img {
+    width: 100%; aspect-ratio: 4/5; object-fit: cover;
+    border-radius: 2rem; display: block;
+  }
+  .about-badge-float {
+    position: absolute; bottom: -1.5rem; right: -1.5rem;
+    background: var(--green); color: white; border-radius: 1.2rem;
+    padding: 1.2rem 1.5rem; text-align: center;
+    box-shadow: 0 8px 30px rgba(45,122,79,0.35);
+  }
+  .about-badge-float strong { font-family: 'Playfair Display', serif; font-size: 2rem; display: block; }
+  .about-badge-float span { font-size: 0.8rem; opacity: 0.9; }
+  .about-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.8rem; }
+  .pill {
+    background: var(--green-pale); color: var(--green);
+    font-size: 0.82rem; font-weight: 600; padding: 0.35rem 0.9rem;
+    border-radius: 50px; border: 1px solid rgba(45,122,79,0.2);
+  }
+
+  /* ── PROJECTS ── */
+  #projects { background: var(--cream); }
+  .projects-header { text-align: center; max-width: 600px; margin: 0 auto 4rem; }
+  .projects-header .section-desc { margin: 0 auto; }
+  .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; max-width: 1200px; margin: 0 auto; }
+
+  .project-card {
+    background: white; border-radius: 1.5rem;
+    overflow: hidden; transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+    display: flex; flex-direction: column;
+  }
+  .project-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(0,0,0,0.12); }
+  .card-img { width: 100%; height: 180px; object-fit: cover; display: block; }
+  .card-body { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; }
+  .card-icon { font-size: 1.8rem; margin-bottom: 0.8rem; }
+  .card-name {
+    font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700;
+    color: var(--charcoal); margin-bottom: 0.5rem;
+  }
+  .card-tag {
+    display: inline-block; font-size: 0.72rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    padding: 0.2rem 0.7rem; border-radius: 50px; margin-bottom: 0.9rem;
+  }
+  .card-desc { font-size: 0.9rem; color: var(--grey); line-height: 1.65; flex: 1; }
+  .card-stat {
+    margin-top: 1.2rem; padding-top: 1rem;
+    border-top: 1px solid #f0f0f0;
+    font-size: 0.82rem; font-weight: 600; color: var(--green);
+  }
+
+  /* project color themes */
+  .p-seva    .card-tag { background: #fff0e0; color: #d4620a; }
+  .p-school  .card-tag { background: #e8f0ff; color: #3058c5; }
+  .p-jeev    .card-tag { background: #fff3e8; color: #b75000; }
+  .p-udaan   .card-tag { background: #f3e8ff; color: #7c3aed; }
+  .p-prakriti .card-tag { background: var(--green-pale); color: var(--green); }
+  .p-vikas   .card-tag { background: #fffbe8; color: #a06000; }
+
+  /* ── IMPACT ── */
+  #impact { background: var(--green); color: white; text-align: center; }
+  #impact .section-title { color: white; }
+  #impact .section-title span { color: var(--amber-light); }
+  .impact-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 2rem; max-width: 1000px; margin: 3.5rem auto 0; }
+  .impact-item { }
+  .impact-num { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 900; color: var(--amber-light); }
+  .impact-label { font-size: 0.9rem; opacity: 0.85; margin-top: 0.3rem; }
+
+  /* ── HOW IT WORKS ── */
+  #how { background: white; }
+  .how-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; max-width: 1200px; margin: 0 auto; }
+  .steps { display: flex; flex-direction: column; gap: 2rem; margin-top: 2rem; }
+  .step { display: flex; gap: 1.2rem; align-items: flex-start; }
+  .step-num {
+    width: 42px; height: 42px; border-radius: 50%; flex-shrink: 0;
+    background: var(--green); color: white;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-family: 'Playfair Display', serif; font-size: 1.1rem;
+  }
+  .step-content h4 { font-size: 1rem; font-weight: 600; margin-bottom: 0.3rem; }
+  .step-content p { font-size: 0.88rem; color: var(--grey); line-height: 1.6; }
+  .how-img { width: 100%; border-radius: 2rem; object-fit: cover; height: 480px; }
+
+  /* ── JOIN / CTA ── */
+  #join {
+    background: linear-gradient(135deg, #1a1a1a 0%, #1c3a2a 100%);
+    text-align: center; position: relative; overflow: hidden;
+  }
+  #join::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 50% 0%, rgba(63,169,107,0.25) 0%, transparent 70%);
+  }
+  #join .section-title { color: white; position: relative; }
+  #join .section-title span { color: var(--amber-light); }
+  #join .section-desc { color: rgba(255,255,255,0.7); margin: 0 auto 2.5rem; text-align: center; position: relative; }
+  .join-cards { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; position: relative; margin-top: 3rem; }
+  .join-card {
+    background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 1.2rem; padding: 2rem 1.8rem; text-align: center; width: 220px;
+    backdrop-filter: blur(6px); transition: all 0.3s; cursor: pointer; text-decoration: none; color: white;
+  }
+  .join-card:hover { background: rgba(255,255,255,0.14); transform: translateY(-4px); }
+  .join-card .j-icon { font-size: 2rem; margin-bottom: 0.8rem; }
+  .join-card h4 { font-size: 1rem; font-weight: 600; margin-bottom: 0.4rem; }
+  .join-card p { font-size: 0.82rem; opacity: 0.7; line-height: 1.5; }
+  .cta-main {
+    display: inline-block; margin-top: 3.5rem; position: relative;
+    background: var(--amber); color: var(--charcoal);
+    padding: 1rem 2.8rem; border-radius: 50px;
+    font-weight: 700; font-size: 1rem; text-decoration: none;
+    box-shadow: 0 6px 24px rgba(244,161,0,0.45);
+    transition: all 0.25s;
+  }
+  .cta-main:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(244,161,0,0.55); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #111; color: rgba(255,255,255,0.55);
+    text-align: center; padding: 2rem 5%;
+    font-size: 0.82rem; line-height: 1.8;
+  }
+  footer a { color: var(--amber-light); text-decoration: none; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translate(-50%, 20px); }
+    to   { opacity: 1; transform: translate(-50%, 0); }
+  }
+
+  .reveal { opacity: 0; transform: translateY(30px); transition: all 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .about-grid, .how-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .projects-grid { grid-template-columns: 1fr 1fr; }
+    .impact-grid { grid-template-columns: repeat(2,1fr); }
+    .hero-stats { gap: 1.5rem; }
+    .nav-links { display: none; }
+  }
+  @media (max-width: 580px) {
+    .projects-grid { grid-template-columns: 1fr; }
+    .impact-grid { grid-template-columns: repeat(2,1fr); }
+    .hero-stats { flex-direction: column; gap: 1rem; bottom: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <div class="logo-circle">IA</div>
+    <span>InAmigos Foundation</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#impact">Impact</a></li>
+    <li><a href="#join">Join Us</a></li>
+  </ul>
+  <a href="#join" class="nav-cta">Get Involved</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-content">
+    <div class="hero-badge">🌟 Uniting Minds for A Change</div>
+    <h1 class="hero-title">Making a Difference,<br><em>One Life at a Time</em></h1>
+    <p class="hero-sub">InAmigos Foundation is a people-powered NGO working across India — feeding the hungry, educating children, empowering women, protecting animals, and healing the planet.</p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn-primary">Explore Our Projects</a>
+      <a href="#join" class="btn-outline">Volunteer with Us</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">50K+</div><div class="stat-label">Meals Served</div></div>
+    <div class="stat"><div class="stat-num">30K+</div><div class="stat-label">Interns Trained</div></div>
+    <div class="stat"><div class="stat-num">20K+</div><div class="stat-label">Trees Planted</div></div>
+    <div class="stat"><div class="stat-num">900+</div><div class="stat-label">Women Empowered</div></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-img-wrap reveal">
+      <img class="about-img"
+        src="https://images.unsplash.com/photo-1593113630400-ea4288922559?w=800&q=80"
+        alt="Volunteers distributing food to community members"
+      />
+      <div class="about-badge-float">
+        <strong>2020</strong>
+        <span>Founded in<br>Bilaspur, CG</span>
+      </div>
+    </div>
+    <div class="reveal">
+      <p class="section-label">Who We Are</p>
+      <h2 class="section-title">A Movement Built on <span>Compassion</span></h2>
+      <p class="section-desc">
+        InAmigos Foundation is a Section 8, NITI Aayog–registered non-profit headquartered in Bilaspur, Chhattisgarh. Founded in 2020 by young changemakers, we work at the grassroots level across education, women empowerment, animal welfare, environmental conservation, and community development.
+      </p>
+      <p class="section-desc" style="margin-top:1rem;">
+        Our goal is simple: create opportunities for every underprivileged person to grow with dignity and respect. We are ISO 9001:2015 certified and driven by a family of over 250 permanent team members and thousands of passionate interns.
+      </p>
+      <div class="about-pills">
+        <span class="pill">🏛️ NITI Aayog Registered</span>
+        <span class="pill">✅ ISO 9001:2015 Certified</span>
+        <span class="pill">📋 CSR-1 Approved</span>
+        <span class="pill">🤝 Section 8 Non-Profit</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="projects-header reveal">
+    <p class="section-label">Our Initiatives</p>
+    <h2 class="section-title">6 Projects, <span>Endless Impact</span></h2>
+    <p class="section-desc">Each project targets a unique social challenge — together forming a complete ecosystem of change.</p>
+  </div>
+  <div class="projects-grid">
+
+    <!-- Seva -->
+    <div class="project-card p-seva reveal">
+      <img class="card-img"
+        src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600&q=80"
+        alt="Food distribution drive - Project Seva"
+      />
+      <div class="card-body">
+        <div class="card-icon">🍚</div>
+        <div class="card-name">Project Seva</div>
+        <span class="card-tag">Food &amp; Essentials</span>
+        <p class="card-desc">Distributing meals, clothing, and daily essentials to underserved communities — ensuring dignity and warmth for those in need, regardless of their circumstances.</p>
+        <div class="card-stat">🥣 50,000+ meals distributed</div>
+      </div>
+    </div>
+
+    <!-- Bachpanshala -->
+    <div class="project-card p-school reveal">
+      <img class="card-img"
+        src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&q=80"
+        alt="Children learning in a classroom - Project Bachpanshala"
+      />
+      <div class="card-body">
+        <div class="card-icon">📚</div>
+        <div class="card-name">Project Bachpanshala</div>
+        <span class="card-tag">Child Education</span>
+        <p class="card-desc">Bridging the education gap for underprivileged children through digital literacy, life skills, and school support — nurturing dreams and building brighter futures in rural areas.</p>
+        <div class="card-stat">🎒 Children educated in rural areas</div>
+      </div>
+    </div>
+
+    <!-- Jeev -->
+    <div class="project-card p-jeev reveal">
+      <img class="card-img"
+        src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=600&q=80"
+        alt="Volunteer caring for stray animals - Project Jeev"
+      />
+      <div class="card-body">
+        <div class="card-icon">🐾</div>
+        <div class="card-name">Project Jeev</div>
+        <span class="card-tag">Animal Welfare</span>
+        <p class="card-desc">Protecting, rescuing, and feeding stray animals every single day — promoting compassion toward all living beings and advocating for their safety and well-being.</p>
+        <div class="card-stat">🐕 50+ animals fed daily</div>
+      </div>
+    </div>
+
+    <!-- Udaan -->
+    <div class="project-card p-udaan reveal">
+      <img class="card-img"
+        src="https://images.unsplash.com/photo-1571844307880-751c6d86f3f3?w=600&q=80"
+        alt="Women's empowerment workshop - Project Udaan"
+      />
+      <div class="card-body">
+        <div class="card-icon">💫</div>
+        <div class="card-name">Project Udaan</div>
+        <span class="card-tag">Women Empowerment</span>
+        <p class="card-desc">Uplifting women through skill-building workshops, entrepreneurship programs, self-help group collaborations, and menstrual hygiene awareness — fostering financial independence and leadership.</p>
+        <div class="card-stat">👩 900+ girls empowered via digital campaigns</div>
+      </div>
+    </div>
+
+    <!-- Prakriti -->
+    <div class="project-card p-prakriti reveal">
+      <img class="card-img"
+        src="https://images.unsplash.com/photo-1542601906897-edc-ea-bbc4e-d-cb5b?w=600&q=80"
+        src="https://images.unsplash.com/photo-1542601906897-edc8976365f8?w=600&q=80"
+        alt="Tree plantation drive - Project Prakriti"
+      />
+      <div class="card-body">
+        <div class="card-icon">🌍</div>
+        <div class="card-name">Project Prakriti</div>
+        <span class="card-tag">Environment</span>
+        <p class="card-desc">Protecting the environment through tree plantation drives, clean-up campaigns, and sustainable farming awareness — every sapling is a gift to future generations.</p>
+        <div class="card-stat">🌱 20,000+ saplings planted</div>
+      </div>
+    </div>
+
+    <!-- Vikas -->
+    <div class="project-card p-vikas reveal">
+      <img class="card-img"
+        src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=600&q=80"
+        alt="Internship and youth skill building - Project Vikas"
+      />
+      <div class="card-body">
+        <div class="card-icon">🎓</div>
+        <div class="card-name">Project Vikas</div>
+        <span class="card-tag">Youth &amp; Skills</span>
+        <p class="card-desc">Empowering youth like you with real-world internships, professional skill-building, and meaningful social work experience — shaping India's next generation of changemakers.</p>
+        <div class="card-stat">🚀 30,000+ interns trained</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- IMPACT -->
+<section id="impact">
+  <div class="reveal">
+    <p class="section-label" style="color:var(--amber-light)">Our Numbers</p>
+    <h2 class="section-title">The <span>Change</span> We've Created</h2>
+  </div>
+  <div class="impact-grid reveal">
+    <div class="impact-item">
+      <div class="impact-num">50K+</div>
+      <div class="impact-label">Meals &amp; Essentials Distributed</div>
+    </div>
+    <div class="impact-item">
+      <div class="impact-num">3,500+</div>
+      <div class="impact-label">Children Reached Through Bachpanshala</div>
+    </div>
+    <div class="impact-item">
+      <div class="impact-num">1,200+</div>
+      <div class="impact-label">Women Impacted Across Programs</div>
+    </div>
+    <div class="impact-item">
+      <div class="impact-num">20K+</div>
+      <div class="impact-label">Trees Planted Under Prakriti</div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="how-grid">
+    <div class="reveal">
+      <p class="section-label">Get Involved</p>
+      <h2 class="section-title">How You Can <span>Contribute</span></h2>
+      <p class="section-desc">Whether you're a student, professional, or community member — there's a place for you in the InAmigos family.</p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h4>Choose Your Role</h4>
+            <p>Pick an area that aligns with your passion — education, environment, women empowerment, and more.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h4>Join as Volunteer or Intern</h4>
+            <p>Sign up through our website or Internshala and become part of Project Vikas — our youth empowerment initiative.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h4>Contribute &amp; Grow</h4>
+            <p>Work on real projects, build skills, earn certificates, and make a tangible difference in your community.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <h4>Become Part of the Family</h4>
+            <p>Over 250 interns have joined InAmigos permanently. Your journey could start right here.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="reveal">
+      <img class="how-img"
+        src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=800&q=80"
+        alt="Group of volunteers working together on community project"
+      />
+    </div>
+  </div>
+</section>
+
+<!-- JOIN / CTA -->
+<section id="join">
+  <div class="reveal">
+    <p class="section-label" style="color:var(--amber-light); position:relative;">Take Action Today</p>
+    <h2 class="section-title" style="position:relative;">Ready to <span>Unite Minds</span><br>for a Change?</h2>
+    <p class="section-desc" style="max-width:500px;">Join thousands of young changemakers who are already creating ripples of impact across India. Every small act counts.</p>
+  </div>
+  <div class="join-cards reveal">
+    <a href="https://inamigosfoundation.org.in" target="_blank" class="join-card">
+      <div class="j-icon">🤝</div>
+      <h4>Volunteer</h4>
+      <p>Give your time and skills to a cause that matters</p>
+    </a>
+    <a href="https://inamigosfoundation.org.in" target="_blank" class="join-card">
+      <div class="j-icon">💼</div>
+      <h4>Intern with Us</h4>
+      <p>Gain real experience while making a difference</p>
+    </a>
+    <a href="https://inamigosfoundation.org.in" target="_blank" class="join-card">
+      <div class="j-icon">❤️</div>
+      <h4>Donate</h4>
+      <p>Support our projects — even ₹200 helps us continue</p>
+    </a>
+    <a href="https://inamigosfoundation.org.in" target="_blank" class="join-card">
+      <div class="j-icon">📣</div>
+      <h4>Spread the Word</h4>
+      <p>Share our mission on social media using #InAmigos</p>
+    </a>
+  </div>
+  <a href="https://inamigosfoundation.org.in" target="_blank" class="cta-main">
+    Visit Official Website →
+  </a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p><strong style="color:white;">InAmigos Foundation</strong> — Uniting Minds for A Change 🌟</p>
+  <p style="margin-top:0.5rem;">
+    📍 Ward No. 5, Gram Post Sipat Ujwal Nagar, Bilaspur, Chhattisgarh – 495555 &nbsp;|&nbsp;
+    🌐 <a href="https://inamigosfoundation.org.in" target="_blank">inamigosfoundation.org.in</a>
+  </p>
+  <p style="margin-top:0.5rem; font-size:0.75rem; opacity:0.5;">
+    Awareness webpage created as part of the InAmigos Internship Task 1 — Project Vikas
+  </p>
+</footer>
+
+<script>
+  // Scroll-reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Fix duplicate src on prakriti card
+  document.querySelectorAll('.card-img').forEach(img => {
+    const srcs = img.getAttribute('src');
+    if (srcs && srcs.includes('edc8976365f8')) {
+      img.src = 'https://images.unsplash.com/photo-1542601906897-edc8976365f8?w=600&q=80';
+    }
+  });
+</script>
+</body>
+</html>
